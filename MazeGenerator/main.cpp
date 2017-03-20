@@ -1,10 +1,17 @@
-#include "SFML\Graphics.hpp"
+#include "curr.h"
+#include "Map.h"
+
+//Start and end chosen after generation (from top/bottom row)
 
 int main()
 {
-	sf::RenderWindow winMain(sf::VideoMode(750, 750), "Test", sf::Style::Close);
-	winMain.setFramerateLimit(60);
+	cr::currWin().create(sf::VideoMode(40.f * 20.f, 40.f * 20.f), "Title", sf::Style::Close);
+	sf::RenderWindow& winMain = cr::currWin();
 
+	cr::setCols(40);
+	cr::setRows(40);
+
+	Map map;
 
 	while (winMain.isOpen())
 	{
@@ -20,7 +27,7 @@ int main()
 		}
 		winMain.clear(sf::Color::Black);
 
-		winMain.draw(sf::CircleShape(winMain.getSize().x / 2.f));
+		map.Draw();
 
 		winMain.display();
 	}

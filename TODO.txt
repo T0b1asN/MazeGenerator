@@ -1,0 +1,3 @@
+TODO:
+	-Finish MazeGeneration
+	-choose Start and Finish after generation, for example from the top and bottom row
