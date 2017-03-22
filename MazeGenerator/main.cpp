@@ -6,13 +6,16 @@
 int main()
 {
 	cr::currWin().create(sf::VideoMode(40.f * 20.f, 40.f * 20.f), "Title", sf::Style::Close);
+	cr::currWin().setFramerateLimit(60);
 	sf::RenderWindow& winMain = cr::currWin();
 
-	cr::setCols(40);
-	cr::setRows(40);
+	winMain.setFramerateLimit(1);
+
+	cr::setCols(39);
+	cr::setRows(39);
 
 	Map map;
-
+	int i = 0;
 	while (winMain.isOpen())
 	{
 		sf::Event evnt;
@@ -25,11 +28,19 @@ int main()
 				break;
 			}
 		}
+		if (i = 60)
+			map.GenerationStep();
+
 		winMain.clear(sf::Color::Black);
 
 		map.Draw();
 
 		winMain.display();
+
+		if (i = 1000)
+			i = 0;
+		i++;
+		std::cout << "i: " << i << std::endl;
 	}
 
 	return 0;

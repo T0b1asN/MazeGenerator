@@ -9,13 +9,17 @@ private:
 
 	bool visited;
 
-	sf::Color debCol;
+	sf::RectangleShape body;
 public:
-	Cell(sf::Vector2i _pos);
+	Cell(sf::Vector2i _pos, bool _visited = false);
 	~Cell();
 
 	bool wasVisited() { return visited; }
-	void visit() { visited = true; }
+	void visit();		// { visited = true; }
+
+	sf::Vector2i getPos() { return pos; }
+
+	void setCol(sf::Color _color) { body.setFillColor(_color); }
 
 	void Draw();
 };
