@@ -14,7 +14,7 @@ public:
 	Cell(sf::Vector2i _pos, bool _visited = false);
 	~Cell();
 
-	bool wasVisited() { return visited; }
+	bool wasVisited();
 	void visit();		// { visited = true; }
 
 	sf::Vector2i getPos() { return pos; }

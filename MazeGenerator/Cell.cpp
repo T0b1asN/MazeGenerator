@@ -29,3 +29,8 @@ void Cell::visit()
 	visited = true;
 	body.setFillColor(sf::Color::White);
 }
+
+bool Cell::wasVisited() 
+{
+	return visited;
+}

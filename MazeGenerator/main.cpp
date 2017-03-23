@@ -9,12 +9,12 @@ int main()
 	cr::currWin().setFramerateLimit(60);
 	sf::RenderWindow& winMain = cr::currWin();
 
-	winMain.setFramerateLimit(1);
+	winMain.setFramerateLimit(60);
 
-	cr::setCols(39);
-	cr::setRows(39);
+	cr::setCols(19);
+	cr::setRows(19);
 
-	Map map;
+	Map map(sf::Vector2i(1, 1));
 	int i = 0;
 	while (winMain.isOpen())
 	{
@@ -28,19 +28,18 @@ int main()
 				break;
 			}
 		}
-		if (i = 60)
+		if (i >= 5)
+		{
 			map.GenerationStep();
+			i = 0;
+		}
 
 		winMain.clear(sf::Color::Black);
 
 		map.Draw();
 
 		winMain.display();
-
-		if (i = 1000)
-			i = 0;
 		i++;
-		std::cout << "i: " << i << std::endl;
 	}
 
 	return 0;

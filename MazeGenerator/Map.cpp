@@ -48,12 +48,12 @@ std::vector<Cell> Map::getUnvisitedNBs(sf::Vector2i pos)
 		ret.push_back(_cells.at(pos.x).at(pos.y - 2));
 	}
 
-	if (pos.x < cr::getCols() - 1 && !_cells.at(pos.x + 2).at(pos.y).wasVisited())
+	if (pos.x < cr::getCols() - 2 && !_cells.at(pos.x + 2).at(pos.y).wasVisited())
 	{
 		ret.push_back(_cells.at(pos.x + 2).at(pos.y));
 	}
 
-	if (pos.y < cr::getRows() - 1 && !_cells.at(pos.x).at(pos.y + 2).wasVisited())
+	if (pos.y < cr::getRows() - 2 && !_cells.at(pos.x).at(pos.y + 2).wasVisited())
 	{
 		ret.push_back(_cells.at(pos.x).at(pos.y + 2));
 	}
@@ -83,13 +83,12 @@ void Map::GenerateMaze()
 void Map::GenerationStep()
 {
 	std::vector<Cell> unvNBs = getUnvisitedNBs(curr.getPos());
-	std::cout << unvNBs.size() << std::endl;
 	if (unvNBs.size() > 0)
 	{
 		stack.push_back(curr);
 
 		int r = rand() % unvNBs.size();
-		unvNBs.at(r).visit();
+		CellAt(unvNBs.at(r).getPos()).visit();
 
 		int dX = unvNBs.at(r).getPos().x - curr.getPos().x;
 		int dY = unvNBs.at(r).getPos().y - curr.getPos().y;
@@ -104,5 +103,15 @@ void Map::GenerationStep()
 			CellAt(sf::Vector2i(curr.getPos().x, curr.getPos().y - 1)).visit();
 
 		curr = unvNBs.at(r);
+	}
+	else
+	{
+		if (stack.size() > 0)
+		{
+			curr = stack.back();
+			stack.pop_back();
+		}
+		else
+			return;
 	}
 }
