@@ -5,17 +5,22 @@
 
 int main()
 {
-	cr::currWin().create(sf::VideoMode(40.f * 20.f, 40.f * 20.f), "Title", sf::Style::Close);
+	cr::currWin().create(sf::VideoMode(49.f * 10.f, 29.f * 10.f), "Title", sf::Style::Close);
 	cr::currWin().setFramerateLimit(60);
 	sf::RenderWindow& winMain = cr::currWin();
 
 	winMain.setFramerateLimit(60);
 
-	cr::setCols(19);
-	cr::setRows(19);
+	cr::setCols(49);
+	cr::setRows(29);
 
 	Map map(sf::Vector2i(1, 1));
-	int i = 0;
+	
+	while (!map.isFinished())
+	{
+		map.GenerationStep();
+	}
+
 	while (winMain.isOpen())
 	{
 		sf::Event evnt;
@@ -28,18 +33,12 @@ int main()
 				break;
 			}
 		}
-		if (i >= 5)
-		{
-			map.GenerationStep();
-			i = 0;
-		}
 
 		winMain.clear(sf::Color::Black);
 
 		map.Draw();
 
 		winMain.display();
-		i++;
 	}
 
 	return 0;

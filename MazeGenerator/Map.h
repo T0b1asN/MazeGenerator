@@ -15,11 +15,15 @@ private:
 	bool hasUnivisitedTiles();
 
 	Cell curr;
+
+	bool finished;
 public:
 	Map(sf::Vector2i startPoint = sf::Vector2i(cr::getCols() / 2, cr::getRows() / 2));
 	~Map();
 
 	void Draw();
+
+	bool isFinished() { return finished; }
 
 	Cell& CellAt(sf::Vector2i pos) { return _cells.at(pos.x).at(pos.y); }
 

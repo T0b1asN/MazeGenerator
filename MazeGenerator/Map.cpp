@@ -112,6 +112,6 @@ void Map::GenerationStep()
 			stack.pop_back();
 		}
 		else
-			return;
+			finished = true;
 	}
 }
