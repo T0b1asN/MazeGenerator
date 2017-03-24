@@ -1,25 +1,27 @@
 #include "curr.h"
 #include "Map.h"
+#include <ctime>
 
 //Start and end chosen after generation (from top/bottom row)
 
 int main()
 {
-	cr::currWin().create(sf::VideoMode(49.f * 10.f, 29.f * 10.f), "Title", sf::Style::Close);
+	srand(static_cast <unsigned> (time(0)));
+	cr::currWin().create(sf::VideoMode(99.f * 5.f, 99.f * 5.f), "Title", sf::Style::Close);
 	cr::currWin().setFramerateLimit(60);
 	sf::RenderWindow& winMain = cr::currWin();
 
-	winMain.setFramerateLimit(60);
+	winMain.setFramerateLimit(25);
 
-	cr::setCols(49);
-	cr::setRows(29);
+	cr::setCols(99);
+	cr::setRows(99);
 
 	Map map(sf::Vector2i(1, 1));
-	
-	while (!map.isFinished())
-	{
-		map.GenerationStep();
-	}
+
+	sf::Clock clock;
+	clock.restart();
+	map.GenerateMaze_Bias();
+	std::cout << "Needed time (in seconds): " << clock.getElapsedTime().asSeconds() << std::endl;
 
 	while (winMain.isOpen())
 	{
