@@ -16,7 +16,7 @@ private:
 
 	Cell curr;
 
-	bool finished;
+	bool finished = false;
 public:
 	Map(sf::Vector2i startPoint = sf::Vector2i(cr::getCols() / 2, cr::getRows() / 2));
 	~Map();
