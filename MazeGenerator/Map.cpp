@@ -4,7 +4,7 @@ Map::Map(sf::Vector2i _startPoint) :
 	startPoint(_startPoint),
 	curr(startPoint, true)
 {
-	std::cout << "Cols: " << cr::getCols() << "|| Rows: " << cr::getRows() << std::endl;
+	std::cout << "Cols: " << cr::getCols() << " || Rows: " << cr::getRows() << std::endl;
 	for (int x = 0; x < cr::getCols(); x++)
 	{
 		std::vector<Cell> temp;
@@ -262,4 +262,23 @@ void Map::GenerationStep_Bias(float horBias, float verBias)
 			std::cout << "Finished!" << std::endl;
 		}
 	}
+}
+
+void Map::toImage(std::string _path)
+{
+	sf::Image file;
+	file.create(cr::getCols(), cr::getRows());
+
+	for (int x = 0; x < cr::getCols(); x++)
+	{
+		for (int y = 0; y < cr::getRows(); y++)
+		{
+			sf::Color c(0, 0, 0);
+			if (CellAt(sf::Vector2i(x, y)).wasVisited())
+				c = sf::Color(255, 255, 255);
+			file.setPixel(x, y, c);
+		}
+	}
+
+	file.saveToFile(_path);
 }

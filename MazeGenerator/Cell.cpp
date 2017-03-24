@@ -2,7 +2,7 @@
 
 Cell::Cell(sf::Vector2i _pos, bool _visited) :
 	pos(_pos), 
-	size(sf::Vector2f(cr::currWin().getSize().x / cr::getCols(), cr::currWin().getSize().y / cr::getRows())),
+	size(sf::Vector2f(cr::getTileSize().x / cr::getCols(), cr::getTileSize().y / cr::getRows())),
 	visited(_visited)
 {	
 	body = sf::RectangleShape(size);
