@@ -6,8 +6,10 @@
 #define rInt(min, max) min + (rand() % (int)(max - min + 1))
 #define rFloat() (static_cast <float> (rand()) / static_cast <float> (RAND_MAX))
 
-#define HorBias 0.15f
-#define VerBias 0.85f
+#define HorBias 0.55f
+#define VerBias 0.45f
+
+#define Title "MazeGenerator"
 
 namespace cr
 {
@@ -17,4 +19,6 @@ namespace cr
 	void setCols(int _cols);
 	int getRows();
 	void setRows(int _rows);
+
+	sf::Vector2u getTileSize();
 }

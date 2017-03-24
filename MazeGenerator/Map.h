@@ -35,6 +35,8 @@ public:
 	void GenerationStep();
 	void GenerationStep_Bias(float horBias = HorBias, float verBias = VerBias);
 
+	void toImage(std::string _path);
+
 	std::vector<std::vector<Cell>>& cells() { return _cells; }
 };
 
